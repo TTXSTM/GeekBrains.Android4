@@ -1,5 +1,6 @@
 package com.example.calk;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int result = 0;
     @Override
     public void onClick(View view) {
+        Intent intent;
         String numS = "";
         String numS1 = "";
         int num1 = 0;
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numS += "0";
                 txt = numS;
                 text.setText(txt);
+                break;
+            case R.id.settings:
+                intent = new Intent(this, ActivitySettings.class);
+                startActivity(intent);
                 break;
             default:
                 break;
