@@ -1,10 +1,13 @@
 package com.example.note;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +23,7 @@ public class NoteTakerActivity extends AppCompatActivity {
     EditText editText_title, editText_note;
     ImageView imageView_save;
     Note note;
+    boolean isOldNote = false;
 
 
     @Override
@@ -30,6 +34,18 @@ public class NoteTakerActivity extends AppCompatActivity {
         imageView_save = findViewById(R.id.imageView_save);
         editText_title = findViewById(R.id.editText_title);
         editText_note = findViewById(R.id.editText_note);
+
+
+        note = new Note();
+        try {
+            note = (Note) getIntent().getSerializableExtra("old_not");
+            editText_title.setText(note.getTitle());
+            editText_note.setText(note.getNote());
+            isOldNote = true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         imageView_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +60,9 @@ public class NoteTakerActivity extends AppCompatActivity {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm a");
                 Date date = new Date();
 
-                note = new Note();
+                if(!isOldNote){
+                    note = new Note();
+                }
 
                 note.setTitle(title);
                 note.setNote(description);
@@ -56,5 +74,23 @@ public class NoteTakerActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.share, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Note from the Note appendix");
+        intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(editText_title));
+        intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(editText_note));
+        startActivity(Intent.createChooser(intent,"Share Note"));
+        return super.onOptionsItemSelected(item);
+
     }
 }

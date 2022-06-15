@@ -31,4 +31,6 @@ public interface Main {
     void updete(int id, String title, String note);
 
     List<Note> getAll();
+    @Query("UPDATE note SET pinned = :pin WHERE ID = :id")
+    void pin(int id, boolean pin);
 }
