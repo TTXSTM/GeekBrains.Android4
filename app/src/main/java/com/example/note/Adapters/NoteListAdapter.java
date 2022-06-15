@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,10 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteViewHolder>{
         holder.textView_date.setText(list.get(position).getDate());
         holder.textView_date.setSelected(true);
 
+        if (list.get(position).isPinned()){
+            holder.imageView_pin.setImageResource(0);
+        }
+
         holder.note_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +76,7 @@ class NoteViewHolder extends RecyclerView.ViewHolder {
 
     CardView note_container;
     TextView textView_title, textView_note, textView_date;
+    ImageView imageView_pin;
 
     public NoteViewHolder(@NonNull View itemView) {
         super(itemView);
