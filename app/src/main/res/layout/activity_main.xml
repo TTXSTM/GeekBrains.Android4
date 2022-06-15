@@ -5,14 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/Bck"
+    tools:openDrawer="start"
     tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView_home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_white_rounded"
+        android:layout_margin="16dp"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@drawable/bg_white_rounded"
+        app:submitBackground="@drawable/bg_white_rounded"
+        app:queryHint="Search Note..." />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_home"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
+        android:layout_below="@+id/searchView_home"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -20,12 +34,24 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_add"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/grin"
+        android:src="@drawable/ic_add" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/nc"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/activity_main_drawer" />
 
 
 </RelativeLayout>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Note</string>
+    <string name="share">share</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="about_the_app">About the app</string>
+    <string name="navigation_header">Navigation header</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="note">Note</string>
+    <string name="note">Note</string>
+    <string name="write_a_note">Write a note</string>
 </resources>
